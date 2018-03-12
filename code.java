@@ -50,6 +50,22 @@ public class PriorityQueue {
    maxHeapify(parent);
   }
  }
+ public static void delete(int key){
+     search(key,1);
+ }
+ public static void search(int key,int parent){
+     if(data.get(parent)<key)return;
+     if(data.get(parent)==key){
+         data.set(parent,data.get(data.size()-1));
+         data.remove(data.size()-1);
+         maxHeapify(parent);
+         return;
+     }
+     int child1 = 2 * parent;
+    int child2 = 2 * parent + 1;
+    if (child1 < data.size() && key <= data.get(child1))search(key,child1);
+    if (child2 < data.size() && key <= data.get(child2))search(key,child2);
+ }
  public static void print() {
   for (int i = 1; i < data.size(); i++) System.out.println(data.get(i));
  }
@@ -69,6 +85,8 @@ public class PriorityQueue {
   Insert(70);
   Insert(80);
   Insert(99);
+  System.out.println(data);
+  delete(27);
   System.out.println(data);
   System.out.println(Extractmax());
   ArrayList < Integer > max = GetkMax(10);
